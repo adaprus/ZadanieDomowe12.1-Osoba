@@ -11,6 +11,7 @@ public class Person {
     public Person(String firstName, String lastName, int age, String PESEL) throws NameUndefinedException, IncorrectAgeException {
         checkFirstName(firstName);
         checkAge(age);
+        checkLastName(lastName);
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -68,5 +69,15 @@ public class Person {
 
     public void setPESEL(String PESEL) {
         this.PESEL = PESEL;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", PESEL='" + PESEL + '\'' +
+                '}';
     }
 }
