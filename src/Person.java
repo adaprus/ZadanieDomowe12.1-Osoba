@@ -5,35 +5,12 @@ public class Person {
     private int age;
     private String PESEL;
 
-    public Person() {
-    }
 
     public Person(String firstName, String lastName, int age, String PESEL) throws NameUndefinedException, IncorrectAgeException {
-        checkFirstName(firstName);
-        checkAge(age);
-        checkLastName(lastName);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setAge(age);
         this.PESEL = PESEL;
-    }
-
-    private void checkAge(int age) throws IncorrectAgeException {
-        if (age <= 0) {
-            throw new IncorrectAgeException("Wiek nie może być mniejszy niż 1");
-        }
-    }
-
-    private void checkFirstName(String firstName) throws NameUndefinedException {
-        if (firstName == null || firstName.length() < 3) {
-            throw new NameUndefinedException();
-        }
-    }
-
-    private void checkLastName(String lastName) throws NameUndefinedException {
-        if (lastName == null || lastName.length() < 3) {
-            throw new NameUndefinedException();
-        }
     }
 
     public String getFirstName() {
@@ -41,7 +18,9 @@ public class Person {
     }
 
     public void setFirstName(String firstName) throws NameUndefinedException {
-        checkFirstName(firstName);
+        if (firstName == null || firstName.length() < 3) {
+            throw new NameUndefinedException("Niepoprawne dane, podaj poprawne imię (minimum trzy litery)");
+        }
         this.firstName = firstName;
     }
 
@@ -50,7 +29,9 @@ public class Person {
     }
 
     public void setLastName(String lastName) throws NameUndefinedException {
-        checkLastName(lastName);
+        if (lastName == null || lastName.length() < 3) {
+            throw new NameUndefinedException("Niepoprawne dane, podaj poprawne nazwisko (minimum trzy litery)");
+        }
         this.lastName = lastName;
     }
 
@@ -59,7 +40,9 @@ public class Person {
     }
 
     public void setAge(int age) throws IncorrectAgeException {
-        checkAge(age);
+        if (age <= 0) {
+            throw new IncorrectAgeException("Wiek nie może być mniejszy niż 1");
+        }
         this.age = age;
     }
 
